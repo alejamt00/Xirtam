@@ -58,7 +58,7 @@
         android:layout_width="146dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#00CC00"
-        android:text="Enter"
+        android:text="@string/enter"
         android:textColor="#000000" />
 
 </LinearLayout>

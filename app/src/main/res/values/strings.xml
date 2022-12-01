@@ -5,4 +5,5 @@
     <string name="pass">Pass</string>
     <string name="user">User</string>
     <string name="icono_de_login">icono de login</string>
+    <string name="enter">Enter</string>
 </resources>
