@@ -9,11 +9,76 @@
     android:orientation="vertical"
     tools:context=".ReproductorActivity">
 
+    <TextView
+        android:id="@+id/generoTV"
+        android:layout_width="351dp"
+        android:layout_height="33dp"
+        android:text="@string/g_nero"
+        android:textAlignment="center"
+        android:textColor="@color/matrix_green"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="411dp"
+        android:layout_height="5dp" />
+
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerGeneros"
         android:layout_width="349dp"
-        android:layout_height="38dp"
+        android:layout_height="48dp"
         android:background="@drawable/test"
-        android:popupBackground="@drawable/test"
-        />
+        android:contentDescription="@string/spinner_generos"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/grupoTV"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:text="@string/grupo"
+        android:textAlignment="center"
+        android:textColor="@color/matrix_green"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <Spinner
+        android:id="@+id/spinnerGrupos"
+        android:layout_width="349dp"
+        android:layout_height="48dp"
+        android:background="@drawable/test"
+        android:contentDescription="@string/spinner_generos" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/cancionTV"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:text="@string/canci_n"
+        android:textAlignment="center"
+        android:textColor="@color/matrix_green"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <Spinner
+        android:id="@+id/spinnerCanciones"
+        android:layout_width="349dp"
+        android:layout_height="48dp"
+        android:background="@drawable/test"
+        android:contentDescription="@string/spinner_generos" />
+
 </LinearLayout>

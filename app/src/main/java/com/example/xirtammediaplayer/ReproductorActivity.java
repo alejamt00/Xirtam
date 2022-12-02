@@ -2,28 +2,50 @@ package com.example.xirtammediaplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import java.util.ArrayList;
-
 public class ReproductorActivity extends AppCompatActivity {
 
-    public String test[] = {"Test1","Test2","Test3"};
-    public Spinner spTest;
+    public String generos[] = {"Bandas Sonoras","Rock Alternativo","Indie"};
 
-    public static GradientDrawable backgroundWithBorder(int bgcolor,
-                                                        int brdcolor) {
+    public String gruposBS[] = {"Matrix","Interestellar"};
+    public String gruposRA[] = {"Radiohead","Gorillaz"};
+    public String gruposI[] = {"Cariño","El Cuarteto de Nos"};
 
-        GradientDrawable gdDefault = new GradientDrawable();
-        gdDefault.setColor(bgcolor);
-        gdDefault.setStroke(2, brdcolor);
-        gdDefault.setCornerRadii(new float[] { 2, 2, 0, 0, 0, 0,
-                2, 2 });
+    public String songsMatrix[] = {"Matrix Main Theme"};
+    public String songsInterestellar[] = {"Cornfield Chase"};
+    public String songsRadiohead[] = {"Creep"};
+    public String songsGorillaz[] = {"Feel Good Inc."};
+    public String songsCariño[] = {"Te Brillan"};
+    public String songsCuarteto[] = {"Lo malo de ser bueno","Algo mejor que hacer"};
 
-        return gdDefault;
+
+    public Spinner spGeneros,spGrupos, spCanciones;
+    public ArrayAdapter adapterGrupos;
+
+    public void setGrupos(int i){
+
+        switch (i){
+            case 0:
+                adapterGrupos = new ArrayAdapter(this, R.layout.spinner_item_layout, gruposBS);
+                adapterGrupos.setDropDownViewResource(R.layout.custom_dropdown);
+                spGrupos.setAdapter(adapterGrupos);
+                break;
+            case 1:
+                adapterGrupos = new ArrayAdapter(this, R.layout.spinner_item_layout, gruposRA);
+                adapterGrupos.setDropDownViewResource(R.layout.custom_dropdown);
+                spGrupos.setAdapter(adapterGrupos);
+                break;
+            case 2:
+                adapterGrupos = new ArrayAdapter(this, R.layout.spinner_item_layout, gruposI);
+                adapterGrupos.setDropDownViewResource(R.layout.custom_dropdown);
+                spGrupos.setAdapter(adapterGrupos);
+                break;
+        }
 
     }
 
@@ -33,9 +55,35 @@ public class ReproductorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reproductor);
         getSupportActionBar().hide();
 
-        spTest = findViewById(R.id.spinner);
-        ArrayAdapter adapterTest = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, test);
-        spTest.setAdapter(adapterTest);
+        spGeneros = findViewById(R.id.spinnerGeneros);
+        spGrupos = findViewById(R.id.spinnerGrupos);
+        spCanciones = findViewById(R.id.spinnerCanciones);
+
+        ArrayAdapter adapterGeneros = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item_layout, generos);
+        adapterGeneros.setDropDownViewResource(R.layout.custom_dropdown);
+        spGeneros.setAdapter(adapterGeneros);
+
+
+        spGeneros.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                setGrupos(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                setGrupos(1);
+            }
+
+        });
+
+        //setear canciones TODO
+
+        /*
+        ArrayAdapter adapterCanciones = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item_layout, generos);
+        adapterCanciones.setDropDownViewResource(R.layout.custom_dropdown);
+        spCanciones.setAdapter(adapterCanciones);*/
+
 
 
     }

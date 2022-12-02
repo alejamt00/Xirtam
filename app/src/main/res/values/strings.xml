@@ -6,4 +6,8 @@
     <string name="user">User</string>
     <string name="icono_de_login">icono de login</string>
     <string name="enter">Enter</string>
+    <string name="g_nero">Género</string>
+    <string name="spinner_generos">Spinner de géneros</string>
+    <string name="grupo">Grupo</string>
+    <string name="canci_n">Canción</string>
 </resources>
