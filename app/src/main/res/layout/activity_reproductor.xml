@@ -27,7 +27,7 @@
         android:id="@+id/spinnerGeneros"
         android:layout_width="349dp"
         android:layout_height="48dp"
-        android:background="@drawable/test"
+        android:background="@drawable/matrix_box_bg"
         android:contentDescription="@string/spinner_generos"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
@@ -53,7 +53,7 @@
         android:id="@+id/spinnerGrupos"
         android:layout_width="349dp"
         android:layout_height="48dp"
-        android:background="@drawable/test"
+        android:background="@drawable/matrix_box_bg"
         android:contentDescription="@string/spinner_generos" />
 
     <Space
@@ -78,7 +78,7 @@
         android:id="@+id/spinnerCanciones"
         android:layout_width="349dp"
         android:layout_height="48dp"
-        android:background="@drawable/test"
+        android:background="@drawable/matrix_box_bg"
         android:contentDescription="@string/spinner_generos" />
 
 </LinearLayout>
