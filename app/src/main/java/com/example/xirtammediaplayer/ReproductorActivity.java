@@ -221,6 +221,7 @@ public class ReproductorActivity extends AppCompatActivity {
 
                 if(mediaPlayer != null && mediaPlayer.isPlaying()){
                     playIcon();
+                    matrixEffect.onPause();
                     mediaPlayer.stop();
                 }
 
@@ -240,6 +241,7 @@ public class ReproductorActivity extends AppCompatActivity {
 
                 if(mediaPlayer != null && mediaPlayer.isPlaying()){
                     playIcon();
+                    matrixEffect.onPause();
                     mediaPlayer.stop();
                 }
 
@@ -268,6 +270,7 @@ public class ReproductorActivity extends AppCompatActivity {
 
                 if(mediaPlayer != null && mediaPlayer.isPlaying()){
                     playIcon();
+                    matrixEffect.onPause();
                     mediaPlayer.stop();
                 }
 
