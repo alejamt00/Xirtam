@@ -12,4 +12,5 @@
     <string name="bsString">Soundtracks</string>
     <string name="rockString">Alternative Rock</string>
     <string name="indieString">Indie</string>
+    <string name="infoErrorLogin">Error login</string>
 </resources>

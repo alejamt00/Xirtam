@@ -3,10 +3,12 @@ package com.example.xirtammediaplayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
+import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.AdapterView;
@@ -39,7 +41,7 @@ public class ReproductorActivity extends AppCompatActivity {
     public ArrayAdapter adapterGrupos, adapterGeneros, adapterSongs;
     public ImageButton playPauseB;
     public MediaPlayer mediaPlayer;
-    public WebView matrix1, matrix2;
+    public WebView matrixEffect;
 
 
     private void inicializarItems(){
@@ -52,13 +54,14 @@ public class ReproductorActivity extends AppCompatActivity {
         generos[1] = getString(R.string.rockString);
         generos[2] = getString(R.string.indieString);
 
-        matrix1 = findViewById(R.id.matrixBar1);
-        matrix1.getSettings().setJavaScriptEnabled(true);
-        matrix1.getSettings().setLoadWithOverviewMode(true);
-        matrix1.getSettings().setUseWideViewPort(true);
-        matrix1.setInitialScale(1);
-        matrix1.setBackgroundColor(Color.BLACK);
-        matrix1.loadUrl("https://geekprank.com/matrix-code-rain/");
+        matrixEffect = findViewById(R.id.matrixBar1);
+        matrixEffect.getSettings().setJavaScriptEnabled(true);
+        matrixEffect.getSettings().setLoadWithOverviewMode(true);
+        matrixEffect.getSettings().setUseWideViewPort(true);
+        matrixEffect.setInitialScale(1);
+        matrixEffect.setBackgroundColor(Color.BLACK);
+        matrixEffect.onPause();
+        matrixEffect.loadUrl("https://geekprank.com/matrix-code-rain/");
 
         spGeneros = findViewById(R.id.spinnerGeneros);
         spGrupos = findViewById(R.id.spinnerGrupos);
@@ -192,6 +195,17 @@ public class ReproductorActivity extends AppCompatActivity {
         playPauseB.setBackgroundResource(R.drawable.pause_icon);
         playIconActive = false;
     }
+    @Override
+    protected void onUserLeaveHint (){
+        matrixEffect.onPause();
+        mediaPlayer.pause();
+        playIcon();
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        mediaPlayer.stop();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -279,6 +293,7 @@ public class ReproductorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(playIconActive){
                     pauseIcon();
+                    matrixEffect.onResume();
                     mediaPlayer.start();
                     mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
@@ -289,6 +304,7 @@ public class ReproductorActivity extends AppCompatActivity {
                     });
                 } else {
                     playIcon();
+                    matrixEffect.onPause();
                     mediaPlayer.pause();
                 }
             }

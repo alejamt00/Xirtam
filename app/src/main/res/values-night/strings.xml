@@ -12,4 +12,5 @@
     <string name="bsString">Bandas Sonoras</string>
     <string name="rockString">Rock Alternativo</string>
     <string name="indieString">Indie</string>
+    <string name="infoErrorLogin">Error login</string>
 </resources>

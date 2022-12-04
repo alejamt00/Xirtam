@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:gravity="center|center_vertical"
+    tools:context=".LoginFragment">
+
+    <ImageView
+        android:id="@+id/icoLogin"
+        android:layout_width="382dp"
+        android:layout_height="373dp"
+        android:contentDescription="@string/icono_de_login"
+        android:src="@drawable/icologin" />
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="196dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/loginNameField"
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:backgroundTint="#00CC00"
+            android:ems="10"
+            android:hint="@string/user"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textAlignment="viewStart"
+            android:textColor="#00CC00"
+            android:textColorHint="@color/material_dynamic_neutral60"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/loginPassField"
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:backgroundTint="#00CC00"
+            android:ems="10"
+            android:hint="@string/pass"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:textColor="#00CC00"
+            android:textColorHint="@color/material_dynamic_neutral60"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="23dp" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00CC00"
+            android:text="@string/enter"
+            android:textColor="#000000" />
+
+    </LinearLayout>
+
+</LinearLayout>
