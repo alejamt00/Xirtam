@@ -4,4 +4,5 @@
     <string name="spinner_generos">Spinner de géneros</string>
     <string name="grupo">Grupo</string>
     <string name="canci_n">Canción</string>
+    <string name="playPause">Play and pause button</string>
 </resources>
