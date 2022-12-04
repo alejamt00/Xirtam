@@ -16,36 +16,25 @@ public class ReproductorActivity extends AppCompatActivity {
 
     public String[] generos = {"Bandas Sonoras","Rock Alternativo","Indie"};
 
-
     public String[] gruposBS = {"Matrix","Interestellar"};
     public String[] gruposRA = {"Radiohead","Gorillaz"};
     public String[] gruposI = {"Cariño","El Cuarteto de Nos"};
-
     public String[] songsMatrix = {"Clubbed to Death","Rock Is Dead"};
     public String[] songsInterestellar = {"Cornfield Chase"};
-    private String[] songsInterestellarSource = {"bs_cornfield_chase"};
-
     public String[] songsRadiohead = {"Creep"};
-    private String[] songsRadioheadSource = {"ra_creep"};
-
     public String[] songsGorillaz = {"Feel Good Inc."};
-    private String[] songsGorillazSource = {"ra_feel_good_inc"};
-
     public String[] songsCarinio = {"Te Brillan"};
-    private String[] songsCarinioSource = {"i_te_brillan"};
-
     public String[] songsCuarteto = {"Lo malo de ser bueno"};
-    private String[] songsCuartetoSource = {"i_lo_malo_de_ser_bueno"};
 
     public int selector;
     public Boolean playIconActive;
     private String source;
 
-
     public Spinner spGeneros,spGrupos, spCanciones;
     public ArrayAdapter adapterGrupos, adapterGeneros, adapterSongs;
     public ImageButton playPauseB;
     public MediaPlayer mediaPlayer;
+
 
     public void setSongSource(){
         switch (spCanciones.getSelectedItem().toString()){
