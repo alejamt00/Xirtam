@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Xirtam Media Player</string>
+    <string name="pass">Pass</string>
+    <string name="user">User</string>
+    <string name="icono_de_login">login icon</string>
+    <string name="enter">Enter</string>
+    <string name="g_nero">Genre</string>
+    <string name="spinner_generos">genre spinner</string>
+    <string name="grupo">Group</string>
+    <string name="canci_n">Song</string>
+    <string name="playPause">Play and pause button</string>
+    <string name="bsString">Soundtracks</string>
+    <string name="rockString">Alternative Rock</string>
+    <string name="indieString">Indie</string>
+</resources>

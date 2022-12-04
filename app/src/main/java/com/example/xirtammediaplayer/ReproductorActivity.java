@@ -2,19 +2,24 @@ package com.example.xirtammediaplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import java.io.IOException;
 
 public class ReproductorActivity extends AppCompatActivity {
 
-    public String[] generos = {"Bandas Sonoras","Rock Alternativo","Indie"};
+    public String[] generos;
 
     public String[] gruposBS = {"Matrix","Interestellar"};
     public String[] gruposRA = {"Radiohead","Gorillaz"};
@@ -34,6 +39,49 @@ public class ReproductorActivity extends AppCompatActivity {
     public ArrayAdapter adapterGrupos, adapterGeneros, adapterSongs;
     public ImageButton playPauseB;
     public MediaPlayer mediaPlayer;
+    public WebView matrix1, matrix2;
+
+
+    private void inicializarItems(){
+
+        selector = 0;
+        playIconActive = true;
+        source = "bs_clubbed_to_death";
+        generos = new String[3];
+        generos[0] = getString(R.string.bsString);
+        generos[1] = getString(R.string.rockString);
+        generos[2] = getString(R.string.indieString);
+
+        matrix1 = findViewById(R.id.matrixBar1);
+        matrix1.getSettings().setJavaScriptEnabled(true);
+        matrix1.getSettings().setLoadWithOverviewMode(true);
+        matrix1.getSettings().setUseWideViewPort(true);
+        matrix1.setInitialScale(1);
+        matrix1.setBackgroundColor(Color.BLACK);
+        matrix1.loadUrl("https://geekprank.com/matrix-code-rain/");
+
+        spGeneros = findViewById(R.id.spinnerGeneros);
+        spGrupos = findViewById(R.id.spinnerGrupos);
+        spCanciones = findViewById(R.id.spinnerCanciones);
+        playPauseB = findViewById(R.id.buttonPlayPause);
+        int sound_id = getApplicationContext().getResources().getIdentifier(source, "raw",
+                getApplicationContext().getPackageName());
+        mediaPlayer = MediaPlayer.create(this, sound_id);
+        mediaPlayer.setLooping(false);
+
+        adapterGeneros = new ArrayAdapter(this, R.layout.spinner_item_layout, generos);
+        adapterGeneros.setDropDownViewResource(R.layout.custom_dropdown);
+        spGeneros.setAdapter(adapterGeneros);
+
+        adapterGrupos = new ArrayAdapter(this, R.layout.spinner_item_layout, gruposBS);
+        adapterGrupos.setDropDownViewResource(R.layout.custom_dropdown);
+        spGrupos.setAdapter(adapterGrupos);
+
+        adapterSongs = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item_layout, songsMatrix);
+        adapterSongs.setDropDownViewResource(R.layout.custom_dropdown);
+        spCanciones.setAdapter(adapterSongs);
+
+    }
 
 
     public void setSongSource(){
@@ -135,34 +183,6 @@ public class ReproductorActivity extends AppCompatActivity {
         }
     }
 
-    private void inicializarItems(){
-
-        selector = 0;
-        playIconActive = true;
-        source = "bs_clubbed_to_death";
-
-        spGeneros = findViewById(R.id.spinnerGeneros);
-        spGrupos = findViewById(R.id.spinnerGrupos);
-        spCanciones = findViewById(R.id.spinnerCanciones);
-        playPauseB = findViewById(R.id.buttonPlayPause);
-        int sound_id = getApplicationContext().getResources().getIdentifier(source, "raw",
-                getApplicationContext().getPackageName());
-        mediaPlayer = MediaPlayer.create(this, sound_id);
-
-        adapterGeneros = new ArrayAdapter(this, R.layout.spinner_item_layout, generos);
-        adapterGeneros.setDropDownViewResource(R.layout.custom_dropdown);
-        spGeneros.setAdapter(adapterGeneros);
-
-        adapterGrupos = new ArrayAdapter(this, R.layout.spinner_item_layout, gruposBS);
-        adapterGrupos.setDropDownViewResource(R.layout.custom_dropdown);
-        spGrupos.setAdapter(adapterGrupos);
-
-        adapterSongs = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item_layout, songsMatrix);
-        adapterSongs.setDropDownViewResource(R.layout.custom_dropdown);
-        spCanciones.setAdapter(adapterSongs);
-
-    }
-
     public void playIcon(){
         playPauseB.setBackgroundResource(R.drawable.play_icon);
         playIconActive = true;
@@ -242,6 +262,7 @@ public class ReproductorActivity extends AppCompatActivity {
                         getApplicationContext().getPackageName());
 
                 if(sound_id != 0) {
+                    mediaPlayer.release(); //TODO
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), sound_id);
                 }
 
@@ -259,12 +280,20 @@ public class ReproductorActivity extends AppCompatActivity {
                 if(playIconActive){
                     pauseIcon();
                     mediaPlayer.start();
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            playIcon();
+                            Log.v("[osaki]", "Se acabó la cancion");
+                        }
+                    });
                 } else {
                     playIcon();
                     mediaPlayer.pause();
                 }
             }
         });
+
     }
 
 }

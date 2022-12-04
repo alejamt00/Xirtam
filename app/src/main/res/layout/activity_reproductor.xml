@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@color/black"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".ReproductorActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="114dp" />
 
     <TextView
         android:id="@+id/generoTV"
@@ -20,12 +24,12 @@
         android:textStyle="bold" />
 
     <Space
-        android:layout_width="411dp"
-        android:layout_height="5dp" />
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <Spinner
         android:id="@+id/spinnerGeneros"
-        android:layout_width="349dp"
+        android:layout_width="345dp"
         android:layout_height="48dp"
         android:background="@drawable/matrix_box_bg"
         android:contentDescription="@string/spinner_generos"
@@ -47,11 +51,11 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="5dp" />
+        android:layout_height="10dp" />
 
     <Spinner
         android:id="@+id/spinnerGrupos"
-        android:layout_width="349dp"
+        android:layout_width="345dp"
         android:layout_height="48dp"
         android:background="@drawable/matrix_box_bg"
         android:contentDescription="@string/spinner_generos" />
@@ -72,25 +76,49 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="5dp" />
+        android:layout_height="10dp" />
 
     <Spinner
         android:id="@+id/spinnerCanciones"
-        android:layout_width="349dp"
+        android:layout_width="345dp"
         android:layout_height="48dp"
         android:background="@drawable/matrix_box_bg"
         android:contentDescription="@string/spinner_generos" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="114dp" />
+        android:layout_height="14dp" />
 
-    <ImageButton
-        android:id="@+id/buttonPlayPause"
-        android:layout_width="95dp"
-        android:layout_height="102dp"
-        android:background="@drawable/play_icon"
-        android:contentDescription="@string/playPause"
-        tools:ignore="RedundantDescriptionCheck" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="401dp"
+        android:alpha="128"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:rotationX="0">
+
+        <ImageButton
+            android:id="@+id/buttonPlayPause"
+            android:layout_width="95dp"
+            android:layout_height="102dp"
+            android:background="@drawable/play_icon"
+            android:contentDescription="@string/playPause"
+            tools:ignore="RedundantDescriptionCheck" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <WebView
+                android:id="@+id/matrixBar1"
+                android:layout_width="411dp"
+                android:layout_height="775dp"
+                android:alpha="10"
+                android:rotationX="41" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
