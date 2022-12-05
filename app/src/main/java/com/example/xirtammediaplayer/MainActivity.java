@@ -5,6 +5,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+/**
+ * MainActivity que lanza el fragmento de login
+ *
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

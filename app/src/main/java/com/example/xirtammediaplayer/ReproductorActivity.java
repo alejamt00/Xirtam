@@ -3,26 +3,25 @@ package com.example.xirtammediaplayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
-import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.OrientationEventListener;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 
-import java.io.IOException;
-
+/**
+ * Activity que se encarga de las funciones principales de la app
+ * Permite reproducir música almacenada de diferentes generos y grupos
+ * a través de unos spinner y un botón de play/pause
+ */
 public class ReproductorActivity extends AppCompatActivity {
 
+    //arrays de tipo string de generos, grupos y canciones
     public String[] generos;
-
     public String[] gruposBS = {"Matrix","Interestellar"};
     public String[] gruposRA = {"Radiohead","Gorillaz"};
     public String[] gruposI = {"Cariño","El Cuarteto de Nos"};
@@ -33,10 +32,12 @@ public class ReproductorActivity extends AppCompatActivity {
     public String[] songsCarinio = {"Te Brillan"};
     public String[] songsCuarteto = {"Lo malo de ser bueno"};
 
+    //variables auxiliares necesarias para el founcionamiento de la app
     public int selector;
     public Boolean playIconActive;
     private String source;
 
+    //variables de elementos de la interfaz
     public Spinner spGeneros,spGrupos, spCanciones;
     public ArrayAdapter adapterGrupos, adapterGeneros, adapterSongs;
     public ImageButton playPauseB;
@@ -44,6 +45,10 @@ public class ReproductorActivity extends AppCompatActivity {
     public WebView matrixEffect;
 
 
+    /**
+     * Método que inicializa valores de la app por defecto y setea algunas partes de la interfaz
+     * de forma default
+     */
     private void inicializarItems(){
 
         selector = 0;
@@ -54,7 +59,7 @@ public class ReproductorActivity extends AppCompatActivity {
         generos[1] = getString(R.string.rockString);
         generos[2] = getString(R.string.indieString);
 
-        matrixEffect = findViewById(R.id.matrixBar1);
+        matrixEffect = findViewById(R.id.matrixBar);
         matrixEffect.getSettings().setJavaScriptEnabled(true);
         matrixEffect.getSettings().setLoadWithOverviewMode(true);
         matrixEffect.getSettings().setUseWideViewPort(true);
@@ -86,7 +91,10 @@ public class ReproductorActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Setea la variable "source" con el nombre de archivo según la cancion seleccionada en el spinner
+     * de canciones
+     */
     public void setSongSource(){
         switch (spCanciones.getSelectedItem().toString()){
             case "Clubbed to Death":
@@ -113,6 +121,11 @@ public class ReproductorActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * En funcion de "i", sete los grupos del spinner de grupos
+     *
+     * @param i : indice del spinner de géneros
+     */
     public void setGrupos(int i){
 
         switch (i){
@@ -138,9 +151,14 @@ public class ReproductorActivity extends AppCompatActivity {
     }
 
 
-    public void setSongsRA(int songId) {
+    /**
+     * Setea el spinner de canciones según el valor de "i" con canciones de algun grupo de Rock Alternativo
+     *
+     * @param i : indice de grupo seleccionado en el spinner de grupos
+     */
+    public void setSongsRA(int i) {
 
-        switch (songId){
+        switch (i){
             case 0:
                 adapterSongs = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item_layout, songsRadiohead);
                 adapterSongs.setDropDownViewResource(R.layout.custom_dropdown);
@@ -154,9 +172,14 @@ public class ReproductorActivity extends AppCompatActivity {
         }
     }
 
-    public void setSongsBS(int songId) {
+    /**
+     * Setea el spinner de canciones según el valor de "i" con canciones de algun grupo de Banda Sonora
+     *
+     * @param i : indice de grupo seleccionado en el spinner de grupos
+     */
+    public void setSongsBS(int i) {
 
-        switch (songId){
+        switch (i){
             case 0:
                 adapterSongs = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item_layout, songsMatrix);
                 adapterSongs.setDropDownViewResource(R.layout.custom_dropdown);
@@ -170,9 +193,14 @@ public class ReproductorActivity extends AppCompatActivity {
         }
     }
 
-    public void setSongsI(int songId) {
+    /**
+     * Setea el spinner de canciones según el valor de "i" con canciones de algun grupo de Indie
+     *
+     * @param i : indice de grupo seleccionado en el spinner de grupos
+     */
+    public void setSongsI(int i) {
 
-        switch (songId){
+        switch (i){
             case 0:
                 adapterSongs = new ArrayAdapter(getApplicationContext(), R.layout.spinner_item_layout, songsCarinio);
                 adapterSongs.setDropDownViewResource(R.layout.custom_dropdown);
@@ -186,35 +214,56 @@ public class ReproductorActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Setea el icono de play al botón playPauseB
+     */
     public void playIcon(){
         playPauseB.setBackgroundResource(R.drawable.play_icon);
         playIconActive = true;
     }
 
+    /**
+     * Setea el icono de pause al botón playPauseB
+     */
     public void pauseIcon(){
         playPauseB.setBackgroundResource(R.drawable.pause_icon);
         playIconActive = false;
     }
+
+    /**
+     * """Listener""" que se ejecuta cuando el usuario deja la app
+     */
     @Override
     protected void onUserLeaveHint (){
         matrixEffect.onPause();
         mediaPlayer.pause();
         playIcon();
     }
+
+    /**
+     * """Listener""" que se ejecuta cuando el usuario gira el dispositivo, después de demasiado tiempo minimizada... etc
+     */
     @Override
     protected void onDestroy(){
         super.onDestroy();
         mediaPlayer.stop();
     }
 
+    /**
+     * Método que se ejecuta cuando se crea la actividad
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reproductor);
         getSupportActionBar().hide();
 
+        //inicializamos los items
         inicializarItems();
 
+        //listener del spinner de géneros
         spGeneros.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -235,6 +284,7 @@ public class ReproductorActivity extends AppCompatActivity {
             }
         });
 
+        //listener del spinner de grupos
         spGrupos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -264,6 +314,7 @@ public class ReproductorActivity extends AppCompatActivity {
             }
         });
 
+        //listener del spinner de canciones
         spCanciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -273,7 +324,7 @@ public class ReproductorActivity extends AppCompatActivity {
                     matrixEffect.onPause();
                     mediaPlayer.stop();
                 }
-
+                //sete la variable source con el nombre del archivo de la cancion seleccionada
                 setSongSource();
                 int sound_id = getApplicationContext().getResources().getIdentifier(source, "raw",
                         getApplicationContext().getPackageName());
@@ -291,6 +342,7 @@ public class ReproductorActivity extends AppCompatActivity {
             }
         });
 
+        //listener del boton play/pause
         playPauseB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

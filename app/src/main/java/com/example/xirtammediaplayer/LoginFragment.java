@@ -14,28 +14,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link LoginFragment#newInstance} factory method to
- * create an instance of this fragment.
+ *  Fragmento que se lanza desde MainActivity y muestra la información de login
+ *  (Cuadros de texto y botón de inicio)
  */
 public class LoginFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // No los utilizaré por ahora
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+    // No los utilizaré por ahora
     private String mParam1;
     private String mParam2;
 
+    //Constructor vacío
     public LoginFragment() {
-        // Required empty public constructor
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Constructor parametrizado, no usado
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
@@ -51,6 +48,10 @@ public class LoginFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Metodo que setea mParam1 y mParam2 a los argumentos pasados por el constructor fuera de la clase
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,15 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    /**
+     * Listener de boton para poder entrar y comprobar las credenciales introducidas por los editText
+     * Si son correctas (admin - 1234), iniciará la actividad del reproductor
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

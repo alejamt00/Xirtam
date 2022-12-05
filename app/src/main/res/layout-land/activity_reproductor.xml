@@ -115,7 +115,7 @@
             android:orientation="horizontal">
 
             <WebView
-                android:id="@+id/matrixBar1"
+                android:id="@+id/matrixBar"
                 android:layout_width="205dp"
                 android:layout_height="800dp"
                 android:alpha="10"
