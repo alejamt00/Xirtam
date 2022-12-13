@@ -1,12 +1,14 @@
-![](https://i.imgur.com/3hawPnu.png)
+![Logo](https://i.imgur.com/bSAM6dQ.png)
 
 ------------
 ### Funciones
 
-- Por ahora está implementado el login con los datos:
+- Ventana inicial de login:
 	- User: admin
 	- Pass : 1234
-- Si falla el login, se accede a una ventana de error
-- Ventana con spinners de Géneros, Grupos y canciones
+- Si falla el login, se accede a una ventana de error, en caso contrario, se accede al reproductor
+- Ventana con spinners de Géneros, Grupos y canciones, que una vez seleccionada la cancion correspondiente, permite reproducirla dando al play
+(o pausarla)
 
-------------
+### Gif de ejemplo de su funcionamiento
+![](https://s9.gifyu.com/images/ezgif.com-gif-maker228b77f06636be1b.gif)
